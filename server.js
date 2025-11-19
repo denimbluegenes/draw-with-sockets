@@ -3,14 +3,16 @@
 const express = require("express");
 const app = express();
 
-// Create HTTP server
-const server = app.listen(3000, () => {
-  console.log("Server is running on http://localhost:3000");
-});
-socket = io();
+// Use Render's port OR 3000 locally
+const PORT = process.env.PORT || 3000;
 
 // Serve everything in the "public" folder
 app.use(express.static("public"));
+
+// Start the HTTP server
+const server = app.listen(PORT, () => {
+  console.log("Server is running on port", PORT);
+});
 
 // Attach socket.io to the server
 const socket = require("socket.io");
